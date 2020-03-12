@@ -23,8 +23,7 @@ public class ventana extends javax.swing.JFrame {
        
           }
  
- String palabradescubrir;
-
+     String palabradescubrir;
      int logitud;
  
     /**
@@ -160,39 +159,48 @@ public class ventana extends javax.swing.JFrame {
 
     private void Btn_aaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_aaActionPerformed
         
-        palabradescubrir = jPasswordField1.getText();
-       
-        logitud=palabradescubrir.length();
-        
-        System.out.println("logitud de palabra " +logitud );
-        
-        for (int indice = 0; indice < logitud; indice++) 
-        {
-            System.out.println("caracter "+ palabradescubrir.charAt(indice)+indice);
-        }
-        
-        int cols=logitud;
-        int rows = 1;
-         jTable1.setModel(new DefaultTableModel(rows, cols));
-       
-       
-       
-        
-       
-        
+       Ingresar_Palabra();
+         
     }//GEN-LAST:event_Btn_aaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        char letra =jTextField1.getText().charAt(0);
-        System.out.println("la letra es :" + letra);
-        System.out.println("longitud "+  logitud);
+       
+        Buscar_Palabra();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    
+    public void Ingresar_Palabra()
+    {
+        palabradescubrir = jPasswordField1.getText();
+        logitud=palabradescubrir.length();
+        
+     /*   for (int indice = 0; indice < logitud; indice++) 
+        {
+            System.out.println("caracter "+ palabradescubrir.charAt(indice)+indice);
+        }
+        */
+        int cols=logitud;
+        int rows = 1;
+        jTable1.setModel(new DefaultTableModel(rows, cols)); 
+        jTextArea1.setText(jTextArea1.getText()+"Letras Ingresadas: \n");
+    }
+    
+    public void Buscar_Palabra()    
+    {
+         char letra =jTextField1.getText().charAt(0);
+     //   System.out.println("la letra es :" + letra);
+       // System.out.println("longitud "+  logitud);
       
         int cols=logitud;
         int rows = 1;
-        int q=0;
-        int w=0;
+        boolean q = false;
         int cont=9;
-        
+        int e=0;
         for (int i = 0; i < logitud; i++) 
         {
            
@@ -200,40 +208,37 @@ public class ventana extends javax.swing.JFrame {
           
             
             if (  y==letra) {
-                System.out.println("posicion " + (i+1));
+               // System.out.println("posicion " + (i+1));
                 
                 jTable1.setValueAt(letra, 0, i);
-               q=1;
+               q=true;
                    
-             
+          
             }
             else
             {
-                System.out.println("error");
-                 w=1;
-                
+                //System.out.println("error");
+              
+               
             }
-    
+  
+          
         }
-      
-        if (q==1) {
-         jTextArea1.setText(jTextArea1.getText()+"Letras Ingresadas: \n");
+       
+        if (q==true) {
+         
         jTextArea1.setText(jTextArea1.getText() +letra+"      Si Esta\n" );   
         }
         else
         {
-            jTextArea1.setText(jTextArea1.getText() +letra+"      No Esta\n"); 
-            //cont--;
            
-            jLabel2.setText((cont-w)+" oportunidades");
-            w=0;
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
+            jTextArea1.setText(jTextArea1.getText() +letra+"      No Esta\n"); 
+            
+          cont--;
+          
+        }jLabel2.setText((cont)+" oportunidades");
+    }
+    
     /**
      * @param args the command line arguments
      */
