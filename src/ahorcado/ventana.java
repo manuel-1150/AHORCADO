@@ -5,6 +5,7 @@
  */
 package ahorcado;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,7 +26,7 @@ public class ventana extends javax.swing.JFrame {
  
      String palabradescubrir;
      int logitud;
- 
+     int cont=9;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -160,7 +161,12 @@ public class ventana extends javax.swing.JFrame {
     private void Btn_aaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_aaActionPerformed
         
        Ingresar_Palabra();
-         
+      
+       jTextArea1.setText(" ");
+        jTextArea1.setText(jTextArea1.getText()+"Letras Ingresadas: \n");
+        
+       cont=9;
+       jLabel2.setText((cont)+" oportunidades");
     }//GEN-LAST:event_Btn_aaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -187,7 +193,7 @@ public class ventana extends javax.swing.JFrame {
         int cols=logitud;
         int rows = 1;
         jTable1.setModel(new DefaultTableModel(rows, cols)); 
-        jTextArea1.setText(jTextArea1.getText()+"Letras Ingresadas: \n");
+       
     }
     
     public void Buscar_Palabra()    
@@ -199,7 +205,7 @@ public class ventana extends javax.swing.JFrame {
         int cols=logitud;
         int rows = 1;
         boolean q = false;
-        int cont=9;
+        
         int e=0;
         for (int i = 0; i < logitud; i++) 
         {
@@ -235,8 +241,13 @@ public class ventana extends javax.swing.JFrame {
             jTextArea1.setText(jTextArea1.getText() +letra+"      No Esta\n"); 
             
           cont--;
-          
+           
         }jLabel2.setText((cont)+" oportunidades");
+        if (cont==0) 
+            {
+                JOptionPane.showMessageDialog(null, "Fin del juego");
+                System.exit(0);
+            }
     }
     
     /**
